@@ -1,0 +1,4 @@
+name: SimplifierPlugin
+version: '${project.version}'
+main: de.jxson.simplifier.SimplifierPlugin
+api-version: 1.20
