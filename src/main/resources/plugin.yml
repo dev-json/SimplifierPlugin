@@ -1,4 +1,10 @@
 name: SimplifierPlugin
 version: '${project.version}'
-main: de.jxson.simplifier.SimplifierPlugin
-api-version: 1.20
+main: de.jxson.simplifier.plugin.SimplifierPlugin
+api-version: '1.20'
+description: This is a fun project for our minecraft-server
+authors:
+  - Jxson
+commands:
+  warp:
+  sfy:
