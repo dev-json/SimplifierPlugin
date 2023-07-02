@@ -50,16 +50,16 @@ public class ExtensionsMenu extends Menu
         }
         if(event.getCurrentItem().isSimilar(FLY_ITEM.getItemStack()))
         {
-            if(!player.getAllowFlight())
+            if (!player.getAllowFlight())
             {
-                player.setFlying(true);
                 player.setAllowFlight(true);
+                player.setFlying(true);
                 player.sendMessage(Globals.PLUGIN_PREFIX + "§aYou can fly now.");
             }
             else
             {
-                player.setFlying(false);
                 player.setAllowFlight(false);
+                player.setFlying(false);
                 player.sendMessage(Globals.PLUGIN_PREFIX + "§aYou can no longer fly.");
             }
             return;

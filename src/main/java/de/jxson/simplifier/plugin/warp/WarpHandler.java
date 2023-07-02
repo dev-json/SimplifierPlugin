@@ -53,6 +53,11 @@ public class WarpHandler
         }
     }
 
+    public void reload()
+    {
+        this.loadWarps();
+    }
+
     public void addWarp(String name, Location location, WarpCategory category)
     {
         this.config.set("warps."+category+".instance."+name+".location", location);

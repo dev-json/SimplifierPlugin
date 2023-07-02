@@ -32,7 +32,6 @@ public class SimplifierCommand implements CommandExecutor, TabCompleter {
             new SimplifierMenu(MenuHandler.getMenuUtility(player)).open();
 
         if(strings.length > 0) {
-            //when using more subcommands use case
             switch (strings[0])
             {
                 case "fly" ->

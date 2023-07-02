@@ -2,12 +2,17 @@ package de.jxson.simplifier.plugin;
 
 import de.jxson.simplifier.api.SimplyAPI;
 import de.jxson.simplifier.api.SimplyAPILocal;
+import de.jxson.simplifier.api.setting.Setting;
 import de.jxson.simplifier.api.warp.Warp;
 import de.jxson.simplifier.api.warp.WarpCategory;
 import de.jxson.simplifier.plugin.setting.SettingHandler;
 import de.jxson.simplifier.plugin.setting.custom.*;
 import de.jxson.simplifier.plugin.warp.WarpHandler;
 import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class SimplyAPIIntegration implements SimplyAPILocal {
     private SettingHandler settingHandler;
@@ -18,11 +23,11 @@ public class SimplyAPIIntegration implements SimplyAPILocal {
         new SimplyAPI(this);
 
         this.settingHandler = new SettingHandler();
-        this.settingHandler.registerSetting(new ColoredChat());
-        this.settingHandler.registerSetting(new HeartEmoji());
-        this.settingHandler.registerSetting(new BeehiveChecker());
-        this.settingHandler.registerSetting(new BatSpawning());
-        this.settingHandler.registerSetting(new PhantomSpawning());
+        SimplyAPI.registerSetting(new ColoredChat());
+        SimplyAPI.registerSetting(new HeartEmoji());
+        SimplyAPI.registerSetting(new BeehiveChecker());
+        SimplyAPI.registerSetting(new BatSpawning());
+        SimplyAPI.registerSetting(new PhantomSpawning());
 
         this.warpHandler = new WarpHandler();
     }
@@ -38,8 +43,48 @@ public class SimplyAPIIntegration implements SimplyAPILocal {
     }
 
     @Override
+    public void reloadWarps() {
+        this.warpHandler.reload();
+    }
+
+    @Override
     public void createWarp(String name, WarpCategory category, Location location) {
         warpHandler.addWarp(name, location, category);
+    }
+
+    @Override
+    public void deleteWarp(Warp warp) {
+        warpHandler.deleteWarp(warp);
+    }
+
+    @Override
+    public void setWarpItem(ItemStack itemStack, Warp warp) {
+        warpHandler.setItem(itemStack, warp);
+    }
+
+    @Override
+    public HashMap<WarpCategory, List<Warp>> getWarps() {
+        return warpHandler.getFoundWarps();
+    }
+
+    @Override
+    public boolean isWarpExists(String name, WarpCategory category) {
+        return warpHandler.warpExists(name, category);
+    }
+
+    @Override
+    public List<Setting> getSettings() {
+        return null;
+    }
+
+    @Override
+    public void registerSetting(Setting setting) {
+        settingHandler.registerSetting(setting);
+    }
+
+    @Override
+    public void unregisterSetting(Setting setting) {
+        settingHandler.unregisterSetting(setting);
     }
 
     public SettingHandler getSettingHandler() {
