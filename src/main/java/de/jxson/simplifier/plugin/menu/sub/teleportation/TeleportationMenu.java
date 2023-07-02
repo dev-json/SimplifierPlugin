@@ -30,8 +30,9 @@ public class TeleportationMenu extends Menu {
 
     public TeleportationMenu(MenuUtility menuUtility) {
         super(menuUtility);
+        SPECIAL_PLAYERS.put("SunsetGFX", "§7§l[§l"+IridiumColorAPI.process("<GRADIENT:c4a1a>Sonnenuntergang</GRADIENT:f7b733>")+"§7§l]");
         SPECIAL_PLAYERS.put("_Jxson", "§7§l[§l"+IridiumColorAPI.process("<GRADIENT:333333>Spinning Wizard</GRADIENT:dd1818>")+"§7§l]");
-        SPECIAL_PLAYERS.put("SunsetGFX", "§7§l[§l"+IridiumColorAPI.process("<GRADIENT:c4a1a>Spinning Wizard</GRADIENT:f7b733>")+"§7§l]");
+        SPECIAL_PLAYERS.put("dev_json", "§7§l[§l"+IridiumColorAPI.process("<GRADIENT:36D1DC>Husband Material</GRADIENT:5B86E5>")+"§7§l]");
     }
 
     @Override
@@ -65,12 +66,10 @@ public class TeleportationMenu extends Menu {
 
         for(Player player : Bukkit.getOnlinePlayers())
         {
-            SPECIAL_PLAYERS.forEach((name, prefix) ->
-            {
-                if(player.getName().equals(name))
-                    PLAYER_ITEM.setName(prefix + " §7§l" + name);
-
-            });
+            PLAYER_ITEM.setName("§7§l" + player.getName());
+            if(SPECIAL_PLAYERS.containsKey(player.getName())) {
+                PLAYER_ITEM.setName(SPECIAL_PLAYERS.get(player.getName()) + " §7§l" + player.getName());
+            }
             PLAYER_ITEM.setSkullOwner(player.getName()).setSlot(getInventory(), getInventory().firstEmpty());
         }
 
